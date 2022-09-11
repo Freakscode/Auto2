@@ -6,28 +6,23 @@ from math import *
 
 # Función para primer punto:
 def distancia_euclidiana(x_train, x_test_point):
-    distancias = []  ## create empty list called distances
-    for i in range(len(x_train)):  ## Loop over the rows of x_train
-        dis_act_entrenamiento = x_train[i]  # Get them point by point
-        dist_act = 0  ## initialize the distance by zero
+    distancias = []
+    for i in range(len(x_train)):
+        dis_act_entrenamiento = x_train[i]
+        dist_act = 0
 
-        for j in range(len(dis_act_entrenamiento)):  ## Loop over the columns of the row
-
+        for j in range(len(dis_act_entrenamiento)):
             dist_act += (dis_act_entrenamiento[j] - x_test_point[j]) ** 2
-            ## Or current_distance = current_distance + (x_train[i] - x_test_point[i])**2
+
         current_distance = np.sqrt(dist_act)
+        distancias.append(current_distance)
 
-        distancias.append(current_distance)  ## Append the distances
-
-    # Store distances in a dataframe
     distancias = pd.DataFrame(data=distancias, columns=['dist'])
     return distancias
 
 
 def vecinos_cercanos(distancia_pp, K):
     vec_cercanos = distancia_pp.sort_values(by=['dist'], axis=0)
-
-    ## Take only the first K neighbors
     vec_cercanos = vec_cercanos[:K]
     return vec_cercanos
 
@@ -35,8 +30,8 @@ def vecinos_cercanos(distancia_pp, K):
 def distancias_knn(x_train, x_test, K):
     distancias = []
     for x_test_point in x_test:
-        distancia_pp = distancia_euclidiana(x_train, x_test_point)  ## Step 1
-        valores_cercanos = vecinos_cercanos(distancia_pp, K)  ## Step 2
+        distancia_pp = distancia_euclidiana(x_train, x_test_point)
+        valores_cercanos = vecinos_cercanos(distancia_pp, K)
         distancias.append(valores_cercanos)
         print(f'Valor del punto de prueba: "petal length (cm): {x_test_point[0]}"'
               f' "petal width (cm): {x_test_point[1]}"'
