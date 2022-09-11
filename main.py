@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import scipy.spatial.distance
+from scipy.spatial.distance import hamming
 from math import *
 
 
@@ -32,9 +32,8 @@ def vecinos_cercanos(distancia_pp, K):
     return vec_cercanos
 
 
-def distancias(x_train, x_test, K):
+def distancias_knn(x_train, x_test, K):
     distancias = []
-    ## Loop over all the test set and perform the three steps
     for x_test_point in x_test:
         distancia_pp = distancia_euclidiana(x_train, x_test_point)  ## Step 1
         valores_cercanos = vecinos_cercanos(distancia_pp, K)  ## Step 2
@@ -43,3 +42,18 @@ def distancias(x_train, x_test, K):
               f' "petal width (cm): {x_test_point[1]}"'
               f' Sus vecinos más cercanos son (ID | Distancia entre los puntos) {valores_cercanos}')
     return
+
+
+""" Segundo Punto """
+
+
+def hamming_funct():
+    n = int(input("Enter the value of 'n': "))
+    a = [int]*n
+    b = [int]*n
+    a = np.random.randint(2, size=n)
+    b = np.random.randint(2, size=n)
+    hamming_d = hamming(a, b) * len(a)
+    print(f'Vector 1: {a} \nVector 2: {b} \nPosiciones en las que fueron diferentes: {hamming_d}')
+    return
+
