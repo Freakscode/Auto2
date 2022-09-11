@@ -2,6 +2,11 @@ import numpy as np
 import pandas as pd
 from scipy.spatial.distance import hamming
 from math import *
+from sklearn import datasets
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split, KFold
+from sklearn.preprocessing import Normalizer
 
 
 # Función para primer punto:
