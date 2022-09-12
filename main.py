@@ -48,7 +48,7 @@ def distancias_knn(x_train, x_test, K):
 
 
 def hamming_funct():
-    n = int(input("Enter the value of 'n': "))
+    n = int(input(" Ingrese el tamaño del vector: "))
     a = [int]*n
     b = [int]*n
     a = np.random.randint(2, size=n)
