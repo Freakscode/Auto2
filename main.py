@@ -2,11 +2,13 @@ import numpy as np
 import pandas as pd
 from scipy.spatial.distance import hamming
 from math import *
-from sklearn import datasets
+from sklearn import datasets, linear_model
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split, KFold
-from sklearn.preprocessing import Normalizer
+from sklearn.model_selection import train_test_split, KFold, cross_val_predict, cross_val_score, StratifiedKFold
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import preprocessing
+from sklearn import utils
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -57,4 +59,5 @@ def hamming_funct():
     hamming_d = hamming(a, b) * len(a)
     print(f'Vector 1: {a} \nVector 2: {b} \nPosiciones en las que fueron diferentes: {hamming_d}')
     return
+
 
